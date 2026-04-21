@@ -18,7 +18,7 @@ async def list_tasks_method(
     db: Annotated[list[Task], Depends(get_database)]
 ):
     try:
-        tasks: list[Task] = await list_tasks(db)
+        tasks: list[Task] = list_tasks(db)
     except ValueError as e:
         raise HTTPException(404, str(e)) from e
     except Exception as e:

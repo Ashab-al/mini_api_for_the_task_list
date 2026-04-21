@@ -2,7 +2,7 @@ from models.task import Task
 from query_objects.tasks.find_all_tasks import find_all_tasks
 
 
-async def list_tasks(db: list[Task]) -> list[Task]:
+def list_tasks(db: list[Task]) -> list[Task]:
     """
     Возвращает список всех задач из хранилища.
 

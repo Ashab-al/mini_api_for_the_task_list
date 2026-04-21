@@ -33,7 +33,7 @@ async def create_task_method(
             например, при невалидных данных или внутренней ошибке сервера.
     """
     try:
-        task = await create_task(request, db)
+        task = create_task(request, db)
     except Exception as e:
         raise HTTPException(400, str(e)) from e
 
