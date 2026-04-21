@@ -2,7 +2,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException
 from schemas.api.tasks.list.response import TaskListResponse
-from services.tasks.find_all_tasks import find_all_tasks
+from services.tasks.list_tasks import list_tasks
 from database import Task, get_database
 
 
@@ -14,11 +14,13 @@ router = APIRouter()
     description="Возвращает все таски.",
     response_model=list[TaskListResponse]
 )
-async def list_task(
+async def list_tasks_method(
     db: Annotated[list[Task], Depends(get_database)]
 ):
     try:
-        tasks = await find_all_tasks(db)
+        tasks: list[Task] = await list_tasks(db)
+    except ValueError as e:
+        raise HTTPException(404, str(e)) from e
     except Exception as e:
         raise HTTPException(400, str(e)) from e
 
