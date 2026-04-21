@@ -22,7 +22,7 @@ docker compose up
 │   ├── services/
 │   ├── tests/
 │   ├── models/
-│   ├── db.py
+│   ├── database.py
 │   └── main.py
 ├── .gitignore
 ├── docker-compose.yml
